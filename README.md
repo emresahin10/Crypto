@@ -14,6 +14,9 @@ You can track coin prices
 
 Followed from;
  [NowinAndroid](https://github.com/android/nowinandroid)
+ 
+ ## Api
+* [Coingecko](https://www.coingecko.com/en/api)
 
   ## Architecture
 MVVM (Model-View-ViewModel) architecture pattern has been used in the development of this application. The development language of the application is Kotlin.
