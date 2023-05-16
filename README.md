@@ -6,6 +6,8 @@
   [![Kotlin](https://img.shields.io/badge/Kotlin-1.7.20-purple.svg?logo=kotlin)](http://kotlinlang.org)
   [![Gradle](https://img.shields.io/badge/gradle-7.5-blue.svg?)](https://lv.binarybabel.org/catalog/gradle/latest)
 
+ <img src="docs/crypto.gif" width="25%"/>
+ 
 
 ## About The Project
   
