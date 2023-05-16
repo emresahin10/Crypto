@@ -1,27 +1,44 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+import kotlin.math.pow
+
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
+    id("crypto.android.application")
+    id("crypto.android.application.compose")
+    id("crypto.android.hilt")
+    id("crypto.android.application.firebase")
+    id("jacoco")
+
 }
+fun Int.pow(n: Int): Int = this.toFloat().pow(n).toInt()
 
 android {
-    namespace = "emresahin.crypto"
-    compileSdk = 33
+    namespace = "com.emresahin.crypto"
 
     defaultConfig {
-        applicationId = "emresahin.crypto"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = "com.emresahin.crypto"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        val major = 1
+        val minor = 0
+        val patch = 0
+        val build = 0
+        versionCode = major * 10.pow(6) + minor * 10.pow(4) + patch * 10.pow(2) + build
+        versionName = "$major.$minor.$patch"
+
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField(
+            "String",
+            "BUILD_TIME",
+            "\"${SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(Date())}\""
+        )
     }
 
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -29,41 +46,57 @@ android {
             )
         }
     }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+
     buildFeatures {
-        compose = true
+        compose =  true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
-    }
-    packaging {
+
+
+    packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 }
-
 dependencies {
+    implementation(project(":core:common"))
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:model"))
+    implementation(project(":core:ui"))
+    implementation(project(":feature:authentication"))
+    implementation(project(":feature:markets"))
+    implementation(project(":feature:search"))
+    implementation(project(":feature:coin-detail"))
+    implementation(project(":feature:my-coins"))
 
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtimeCompose)
+    implementation(libs.androidx.compose.runtime.tracing)
+    implementation(libs.androidx.compose.material3.windowSizeClass)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.window.manager)
+    implementation(libs.coil.kt)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
 }
