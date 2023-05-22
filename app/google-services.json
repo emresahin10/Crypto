@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "394160759059",
+    "project_id": "loodos-crypto",
+    "storage_bucket": "loodos-crypto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394160759059:android:775dc89ceb6afb16b77ae6",
+        "android_client_info": {
+          "package_name": "com.emresahin.crypto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394160759059-n8gendug0si5bvmso1lt4roq2h3ao42p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiUUef_Sfav-W_MZCZzqzY5jnXrsvupDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394160759059-n8gendug0si5bvmso1lt4roq2h3ao42p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
